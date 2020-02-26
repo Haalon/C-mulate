@@ -10,8 +10,8 @@
 using namespace std;
 using namespace cimg_library;
 
-#define WIDTH 500
-#define HEIGHT 500
+#define WIDTH 480
+#define HEIGHT 480
 #define SKIP 10
 #define SCALE 2
 				 

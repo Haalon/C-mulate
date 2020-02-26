@@ -106,9 +106,24 @@ Cell rule(Field<Cell>& f, int x, int y)
 						f(x-1,y-1).val + f(x-2,y-2).val + f(x-3, y-3).val +
 						f(x-1,y+1).val + f(x-2,y+2).val + f(x-3, y+3).val +
 						f(x+1,y-1).val + f(x+2,y-2).val + f(x+3, y-3).val;
-	if(f(x,y).val == 1 && (sum > 5 || sum == 3))
-		return Cell(1,h);
-	if(f(x,y).val == 0 && (sum > 7 || sum == 2))
-		return Cell(1,h);
-	return Cell(0,0);
+	unsigned char sum2 = f(x+1,y).val + f(x+2,y).val + f(x+3, y).val +
+						f(x-1,y).val + f(x-2,y).val + f(x-3, y).val +
+						f(x,y+1).val + f(x,y+2).val + f(x, y+3).val +
+						f(x,y-1).val + f(x,y-2).val + f(x, y-3).val;
+	if(x >= f.width/3 && x < f.width/3*2 && y >= f.height/3 && y < f.height/3*2)
+	{
+		if(f(x,y).val == 1 && (sum2 > 5 || sum2 == 3))
+			return Cell(1,h);
+		if(f(x,y).val == 0 && (sum2 > 7 || sum2 == 2))
+			return Cell(1,h);
+		return Cell(0,0);
+	}
+	else
+	{
+		if(f(x,y).val == 1 && (sum > 5 || sum == 3))
+			return Cell(1,h);
+		if(f(x,y).val == 0 && (sum > 7 || sum == 2))
+			return Cell(1,h);
+		return Cell(0,0);
+	}
 }

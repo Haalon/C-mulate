@@ -9,12 +9,11 @@ const double PI = 3.14159265358979323846;
 using namespace cimg_library;
 
 template <class T>
-class Field
+struct Field
 {
 	T * body;
 	int width;
 	int height;
-public:
 	Field(int w, int h) : width(w), height(h)
 	{
 		body = new T [w*h];
