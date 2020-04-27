@@ -110,7 +110,7 @@ Cell rule(Field<Cell>& f, int x, int y)
 						f(x-1,y).val + f(x-2,y).val + f(x-3, y).val +
 						f(x,y+1).val + f(x,y+2).val + f(x, y+3).val +
 						f(x,y-1).val + f(x,y-2).val + f(x, y-3).val;
-	if(x >= f.width/3 && x < f.width/3*2 && y >= f.height/3 && y < f.height/3*2)
+	if(x >= f.width/5 && x < f.width/5*4 && y >= f.height/5 && y < f.height/5*4)
 	{
 		if(f(x,y).val == 1 && (sum2 > 5 || sum2 == 3))
 			return Cell(1,h);

@@ -10,8 +10,8 @@
 using namespace std;
 using namespace cimg_library;
 
-#define WIDTH 480
-#define HEIGHT 480
+#define WIDTH 500
+#define HEIGHT 500
 #define SKIP 10
 #define SCALE 2
 				 
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
 	main_disp.resize(WIDTH*SCALE, HEIGHT*SCALE);
 
 
-
+	double start = omp_get_wtime();
 	bool flag  = true;
     while (!main_disp.is_closed() )
     {
@@ -43,18 +43,26 @@ int main(int argc, char const *argv[])
     		main_disp.flush();
     	}
 
+    	if(main_disp.key() == cimg::keyP)
+    	{
+    		img.save("img/c.png", atmt.step, 12);
+    		main_disp.flush();
+    	}
+
  		if(flag)
  		{
 	    	atmt.next();
 	    	if(atmt.step % SKIP ==0)
 	    	{
 	    		img = atmt.show();
-	    		cout<<atmt.step << '\n'<<flush;
+	    		cout<<atmt.step << " in: " << (omp_get_wtime() - start)*1000 << '\n' << flush;
+
+	    		start = omp_get_wtime();
 	    	}
     	}
 
-    	// if(atmt.step % 250 == 1)
-    	// 	img.save("img/b.png", atmt.step, 12);
+    	if(atmt.step % 500 == 1)
+    		img.save("img/c.png", atmt.step, 12);
 		main_disp.display(img);		
 
     }
